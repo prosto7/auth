@@ -1,5 +1,3 @@
-<?php phpinfo();
-?>
 <div class='container table table-title mt-5'>
     <h2>Log In</h2>
 

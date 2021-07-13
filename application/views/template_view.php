@@ -20,17 +20,8 @@
         <!-- Datatable JS -->
     <script src="/js/DataTables/datatables.min.js"></script>
     <script src="/js/DataTables/js/dataTables.bootstrap4.js"></script>
-
-   
-
-
     <!-- arcticModal -->
     <script src="/js/modal/jquery.arcticmodal-0.3.min.js"></script>
-
-    <!-- datatable on page ajax -->
-    <!-- <script src="/js/modal/ajax_table.js"></script> -->
-    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script> -->
-<!-- <script type="text/javascript" charset="utf8" src="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script> -->
 </head>
 
 <body>

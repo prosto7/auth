@@ -28,7 +28,7 @@ Player12
 Стандартная конфигурация подключения к БД (class Tools(connect and alternativeConnect))
 $host = "127.0.0.1",
 $user = 'root', 
-$pass = '', 
+$pass = 'tron', 
 $dbname = 'sibers'
 
 Структура проекта:

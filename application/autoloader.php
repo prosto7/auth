@@ -1,17 +1,29 @@
 <?php
+define('DS', $_SERVER['DOCUMENT_ROOT'].'/');
 
-/*
-Класс-маршрутизатор для определения запрашиваемой страницы.
-> цепляет классы контроллеров и моделей;
-> создает экземпляры контролеров страниц и вызывает действия этих контроллеров.
-*/
-class Route
-{
+function autoload($class) {
 
-	static function start()
-	{
-		// контроллер и действие по умолчанию
-		$controller_name = 'Main';
+	if( file_exists(DS."application/models/".$class.".php" ) ){
+        require_once DS."application/models/".$class.".php";
+
+    }
+    elseif( file_exists(DS."application/controllers/".$class.".php" ) ){
+		require_once  DS."application/controllers/".$class.".php";
+ 
+    }elseif( file_exists(DS."application/view/".$class.".php") ){
+		require_once  DS."application/view/".$class.".php";
+    
+    } else {
+		require_once  DS."application/core/".$class.".php";
+  
+    }
+
+	// контроллер и действие по умолчанию
+		
+	
+	}
+
+	$controller_name = 'Main';
 		$action_name = 'index';
 		
 		$routes = explode('/', $_SERVER['REQUEST_URI']);
@@ -37,18 +49,18 @@ class Route
 		// подцепляем файл с классом модели (файла модели может и не быть)
 
 		$model_file = strtolower($model_name).'.php';
-		$model_path = "application/models/".$model_file;
+		$model_path = DS."application/models/".$model_file;
 		if(file_exists($model_path))
 		{
-			include "application/models/".$model_file;
+			include_once DS."application/models/".$model_file;
 		}
 
 		// подцепляем файл с классом контроллера
 		$controller_file = strtolower($controller_name).'.php';
-		$controller_path = "application/controllers/".$controller_file;
+		$controller_path = DS."application/controllers/".$controller_file;
 		if(file_exists($controller_path))
 		{
-			include "application/controllers/".$controller_file;
+			include_once (DS."application/controllers/".$controller_file);
 		}
 		else
 		{
@@ -56,13 +68,13 @@ class Route
 			правильно было бы кинуть здесь исключение,
 			но для упрощения сразу сделаем редирект на страницу 404
 			*/
-			Route::ErrorPage404();
+			ErrorPage404();
 		}
 		
 		// создаем контроллер
 		$controller = new $controller_name;
 		$action = $action_name;
-		
+	
 		if(method_exists($controller, $action))
 		{
 			// вызываем действие контроллера
@@ -71,10 +83,8 @@ class Route
 		else
 		{
 			// здесь также разумнее было бы кинуть исключение
-			Route::ErrorPage404();
+			ErrorPage404();
 		}
-	
-	}
 
 	function ErrorPage404()
 	{
@@ -84,4 +94,3 @@ class Route
 		header('Location:'.$host.'404');
     }
     
-}

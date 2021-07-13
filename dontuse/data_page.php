@@ -7,9 +7,7 @@ include_once('classes.php'); ?>
     <h2>Personal database of CIA agents</h2>
     <p>Top secret</p>
 </div>
-<?php
-if (isset($_SESSION['register']) || isset($_SESSION['superadmin'])) {
-?>
+
 
 
 

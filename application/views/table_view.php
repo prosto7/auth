@@ -29,10 +29,8 @@
 $(document).ready(function() {
             
           $('#empTable').DataTable({
-                       // "order": [[ 0, "asc" ]],
                    'processing': true,
                    'serverSide': true,
-                
                    'serverMethod': 'post',
                    'ajax': {
                        'url':'/table'

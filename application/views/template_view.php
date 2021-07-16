@@ -22,6 +22,7 @@
     <script src="/js/DataTables/js/dataTables.bootstrap4.js"></script>
     <!-- arcticModal -->
     <script src="/js/modal/jquery.arcticmodal-0.3.min.js"></script>
+  
 </head>
 
 <body>
@@ -32,7 +33,7 @@
                 <ul class="nav nav-pills ">
                     <li class="nav-item"><a href="/" class="nav-link">Main Page</a></li>
                     <li class="nav-item"><a href="/registration" class="nav-link">Sign In</a></li>
-                    <li class="nav-item"><a href="login" class="nav-link">Login</a></li>
+                    <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
                     <li class="nav-item"><a href="/table" class="nav-link">Data list(Ajax)</a></li>
                 </ul>
             </nav>
@@ -42,5 +43,13 @@
     <div class="container">
     <?php include_once 'application/views/'.$content_view; ?>
     </div>
+
+<script>
+
+</script>
+
+<script src="../js/main.js"></script>
+<!-- script modal -->
+<script src="/js/modal.js"></script>
     </body>
     </html>

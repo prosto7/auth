@@ -13,17 +13,23 @@ function autoload($class) {
     }elseif( file_exists(DS."application/view/".$class.".php") ){
 		require_once  DS."application/view/".$class.".php";
     
-    } else {
-		require_once  DS."application/core/".$class.".php";
-  
-    }
+	}elseif( file_exists(DS."application/services/".$class.".php") ){
+		require_once  DS."application/services/".$class.".php";
+    
+    } elseif( file_exists(DS."application/core/".$class.".php") )
+		{
+			require_once  DS."application/core/".$class.".php";
+
+	} else {
+		throw new Exception('Failed to include class' . $class);
+	}
 
 	// контроллер и действие по умолчанию
 		
 	
 	}
 
-	$controller_name = 'Main';
+		$controller_name = 'Main';
 		$action_name = 'index';
 		
 		$routes = explode('/', $_SERVER['REQUEST_URI']);
@@ -94,3 +100,4 @@ function autoload($class) {
 		header('Location:'.$host.'404');
     }
     
+

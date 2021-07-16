@@ -88,3 +88,11 @@ td {
     max-width: 100vw !important;
 
 }
+
+.border_msg_error{
+    border:1px solid rgba(95, 83, 28, 0.582)
+}
+.msg_error {
+    font-weight:bold;
+    color: rgba(228, 151, 27, 0.849);
+}

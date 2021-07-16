@@ -1,0 +1,7 @@
+
+ajax - аутентификация 
+
+модальное окно через бутстрап views - login_view.php - разметка;  js/modal.js скрипт;....
+js/main.js - ajax скрипт;
+model_login.php - модель
+controller-login.php - контроллер

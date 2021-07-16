@@ -7,12 +7,13 @@ class Controller_Table extends Controller
     {
 	$this->model = new Model_Table();
 	$this->view = new View();
-	
+
 	}
 	function action_index()
 	{	
-		// check for definition ajax requests
-		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {
+		// check for definition ajax request
+		if (Utils::is_ajax()==true){
+		// if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {
 			$this->model->get_data();
 		}
 

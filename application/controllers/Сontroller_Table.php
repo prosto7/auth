@@ -24,4 +24,14 @@ class Controller_Table extends Controller
 		
 	}
 
+	// function action_view()
+	// {	
+		
+		
+		
+	// }
+
+
+
+
 }

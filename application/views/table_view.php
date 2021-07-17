@@ -68,10 +68,7 @@ $(document).ready(function() {
                            "visible": false
                        } // id is hide,but it's need for initialisation data and draw modal window with data 
    
-   
                    ],
-   
-                 
                });
    
            });

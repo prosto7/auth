@@ -1,4 +1,4 @@
-<?php session_start();
+<?php 
 
 class Model_Login extends Model
 {
@@ -8,7 +8,7 @@ class Model_Login extends Model
 
         $login = $_POST['login'];
         $password = $_POST['password'];
-        $sql = DB::run("SELECT salt,pass,roleid FROM `users` WHERE `login` = :login", array('login' => $login));
+        $sql = DB::run("SELECT salt,pass,roleid FROM `users` WHERE `login` = :login", ['login' => $login]);
         $salt_row = $sql->fetch(PDO::FETCH_ASSOC);
         if ($salt_row != false) {
             $hashed_password = $salt_row['pass'];

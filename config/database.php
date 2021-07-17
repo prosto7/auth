@@ -41,3 +41,8 @@ class DB
 
 }
 
+echo '</br>';
+echo 'is DB ';
+echo '</br>';
+
+?>

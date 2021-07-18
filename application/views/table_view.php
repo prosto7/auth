@@ -3,7 +3,7 @@
     <p>Top secret</p>
 </div>
 
-    <div class="container  mt-5 mb-5">
+    <div class="container mt-5 mb-5">
         <!-- Table -->
         <table id='empTable' class='display dataTable table'>
             <thead class="table-success">
@@ -28,14 +28,18 @@
 
 $(document).ready(function() {
             
-          $('#empTable').DataTable({
+    var kety = $('#empTable').DataTable({
                    'processing': true,
                    'serverSide': true,
                    'serverMethod': 'post',
                    'ajax': {
                        'url':'/table'
                    },
-   
+                   dom: 'Bfrtlip',
+                   searching: true,
+                   "lengthMenu" : [[5, 10,25,50,100000], [5,10, 25, 50, "All"]],
+                   lengthChange: true,
+                      buttons: [ 'copy', 'excel','csv','pdf' ],
                    'columns': [
    
                        {
@@ -69,8 +73,13 @@ $(document).ready(function() {
                        } // id is hide,but it's need for initialisation data and draw modal window with data 
    
                    ],
-               });
-   
-           });
-   
+          
+
+} ); 
+
+
+
+    });
+
+
        </script>

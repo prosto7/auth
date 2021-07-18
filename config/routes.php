@@ -1,10 +1,17 @@
 <?php 
 
+// route, call controllers;  
+
+// uri => class(controller) / action(method)
+
+
 return array(
-    'main' => 'main/index',  // Controller_Main
-    'login'=> 'login/index',
+    
+    'main' => 'main/index',
+    'login' => 'user/login',
     '404' => '404/index',
-    'table'=> 'table/index'
+    'data' => 'data/index',
+    'table' => 'user/table'
 );
 
 ?>

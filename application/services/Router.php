@@ -1,63 +1,55 @@
 <?php 
 
-
-echo '</br>';
-echo 'isRouter';
-echo '</br>';
-
-
-
 class Router 
-
 {
     private $routes;
 
     public function __construct()
-    {
-        
+    {    
         $routePath = DS.'config/routes.php';
-        $this->routes = include($routePath);
-       
+        $this->routes = include($routePath);  
     }
 
 /*   
   Returns request string
  */
-
     private function getURI() {
-        //  получить строку запроса
-        if (!empty($_SERVER['REQUEST_URI'])) {
+     
+        if (!empty($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] != '/') {
+           
            return trim($_SERVER['REQUEST_URI'], '/');
+        }   else {
+           
+            return 'main';    // if url is empty, router will send to 'Conroller_Main'
         }
-      
 
     }
    
     public function run(){
-
+  
         $uri = $this->getURI();
-
-        echo '</br><h3>String Request:</h3>';
-        echo $uri;
-        echo '</br>';
-
-        //  Проверить наличие такого запроса в роутес.пхп
+       
+        //  Check the request in route.php  ../config/route.php
             foreach($this->routes as $uriPattern => $path){
-                // сравнить $uriPattern and $uri
-                // ~ - используется в качестве разделителей вместо слэшей , т.к. слэши попадются в uri
+               
+                /* Compare $uriPattern and $uri
+                ~ used by as separator instead slashes, because they are in uri  */
+               
+               
                 if (preg_match("~$uriPattern~", $uri)) {
-                    // echo '<pre>';
-                    // echo $path;
-                    // echo '</pre>';
-
+            
                     $segments = explode('/', $path);  
                     $controller_name = array_shift($segments);
-                    $controller_name = ucfirst($controller_name);
-                    $controller_name =  'Controller_'.$controller_name;
+                    $controller_name = 'Controller_'.(ucfirst($controller_name));
                     $action_name = 'action_'.(array_shift($segments));
                     $action = $action_name;
-                    var_dump($controller_name);
-                    $controller = new $controller_name;
+                    $controller_file = DS.'application/controllers/'.$controller_name.'.php';           
+
+                    // if this file located in the directory , create new class, and if this class has method, we call method.
+
+                    if(file_exists($controller_file))
+                    {
+                            $controller = new $controller_name;
                     
                         if (!method_exists($controller,$action_name)) {
                             exit ("Method $action_name not found");
@@ -65,27 +57,14 @@ class Router
                         else {
                             $controller->$action();
                         }
+                }  else {
 
-                    echo '<br>Class: '. $controller_name;
-                    echo '<br> Method: ' . $action_name;
-                }   
-
+                    exit ("Class $controller_name not found");
+                }
             }
-    
-        // Если есть совпадение , определить какой контроллер и акшн обрабатывают зхапрос
+            }
 
-
-        // подключить файл класса контроллера 
-
-
-        // создать объект вызвать метод акшн
-
-
-        // print_r($this->routes);
-        // echo 'class router,method run';
     }
-  
-    
     
 }
 

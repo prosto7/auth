@@ -37,12 +37,6 @@ class DB
         return $stmt;
     }
     
- 
-
 }
-
-echo '</br>';
-echo 'is DB ';
-echo '</br>';
 
 ?>

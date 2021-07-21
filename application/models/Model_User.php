@@ -128,4 +128,36 @@ class Model_User extends Model
 
         echo json_encode($response);
     }
-}
+
+ function reg_user_in_db($login, $pass, $email, $namefirst, $namelast, $age, $gender, $imagepath, $id = 0){
+
+
+   $pdo = DB::instance();
+    $checker = $pdo->prepare("SELECT COUNT(*) FROM `users` WHERE `login` = :login");
+    $checker->bindParam(':login', $login);
+    $checker->execute();
+    $row_count = $checker->fetchColumn();
+    if ($row_count !== 1) {   // if table `users` has this login and hash password matches the entered password, user come in site
+        $ps = $pdo->prepare("INSERT INTO users (login, pass, roleid, email, namefirst, namelast, age, gender,imagepath,salt) VALUES (:login, :pass, :roleid, :email,:namefirst, :namelast, :age, :gender, :imagepath,:salt)");
+        // naming an object this, and transform to array
+        $ar = (array)$this;
+        array_shift($ar);
+        // delete first element array  :id
+        // ar = :login, :pass, :roleid, :email, :namefirst, :namelast ,:age, :gender,:imagepath          
+        $ps->execute($ar);
+        $result = true;
+        return $result;
+    } else {
+        echo "Handler captured error";
+        $result = false;
+        $ps = null;
+        $pdo = null;
+        $checker = null;
+        return $result; 
+    }
+   
+} 
+    }
+
+
+

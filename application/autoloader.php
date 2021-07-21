@@ -1,6 +1,5 @@
 <?php
 
-
 function autoload($class)
 {
 			$path = [

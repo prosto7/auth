@@ -97,4 +97,19 @@ td {
     color: rgba(228, 151, 27, 0.849);
 }
 
+#export_button {
+
+    padding-right: 15px;
+    padding-left: 15px;
+    margin: 0 150px 10px auto;
+}
+
+#container_table_php {
+    display: flex;
+    flex-direction: column;
+}
+#container_table_php>h3 {
+    text-align: center;
+    margin-bottom: 50px;
+}
 

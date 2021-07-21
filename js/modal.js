@@ -1,5 +1,6 @@
 var myModal = new bootstrap.Modal(document.getElementById('exampleModalCenter'));
-$(document).ready(function() {
+$('#login').click(function(e) {
+    e.preventDefault();
     myModal.show();
    
 });

@@ -28,4 +28,18 @@ $("#login_btn").click(function(e){
         }); 
 
 }); 
+
+
+
+// export csv on data page
+  $( "#export_button" ).click(function() {
+     $.ajax({
+        type: "POST",
+        url: "/data",
+     success( msg ) {
+        
+     },
+    });
+});
+
 //

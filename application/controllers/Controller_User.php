@@ -20,7 +20,8 @@ class Controller_User extends Controller
 		}
 		else
 		{
-			$this->view->generate('login_view.php','template_view.php');
+		
+			$this->view->generate('registration_view.php','template_view.php');
 		}
 		
 		}
@@ -31,15 +32,25 @@ class Controller_User extends Controller
 		if (Utils::is_ajax()==true){
 
 			$this->model->get_data_table();
+		
+			
+			
 		}
 
 		else {
+
 			$this->view->generate('table_view.php','template_view.php');
+		
 		}
 		
+		}
+
+		function action_registr(){
 
 
 		}
+
+		
     }
 
 	

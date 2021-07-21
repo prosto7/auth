@@ -1,6 +1,6 @@
 <div class='container mt-5 main-data__container'>
-    <h2>Personal database of CIA agents</h2>
-    <p>Top secret</p>
+    <h2>Table with User's data, with using js library "DataTable"</h2>
+    <p>(sorting, search, pagination, exporting csv,excel,pdf)</p>
 </div>
 
     <div class="container mt-5 mb-5">
@@ -21,21 +21,21 @@
 
         </table>
     </div>
-
-    <!-- Script for create table with our data  -->
-   
+    <!-- Script for create table with our data  -->   
     <script>
 
 $(document).ready(function() {
             
-    var kety = $('#empTable').DataTable({
+    var table = $('#empTable').DataTable({
                    'processing': true,
                    'serverSide': true,
                    'serverMethod': 'post',
                    'ajax': {
                        'url':'/table'
                    },
+                   'dataSrc': "",
                    dom: 'Bfrtlip',
+                   
                    searching: true,
                    "lengthMenu" : [[5, 10,25,50,100000], [5,10, 25, 50, "All"]],
                    lengthChange: true,

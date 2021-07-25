@@ -2,7 +2,7 @@
         <h2 class='mb-3'>Sign In</h2>
 
         <hr>
-        <form class="registration_form" action="" method="post" enctype="multipart/form-data">
+        <form class="registration_form" action="/login" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="login">Login:
                     <input type="text" class="form-control" name="login" id="login" autocomplete="off">

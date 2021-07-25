@@ -33,8 +33,6 @@ class Controller_User extends Controller
 
 			$this->model->get_data_table();
 		
-			
-			
 		}
 
 		else {
@@ -45,10 +43,7 @@ class Controller_User extends Controller
 		
 		}
 
-		function action_registr(){
 
-
-		}
 
 		
     }

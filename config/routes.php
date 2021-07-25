@@ -12,7 +12,7 @@ return array(
     '404' => '404/index',
     'data' => 'data/data',
     'table' => 'user/table',
-    
+    'register' => 'register/index',
 );
 
 ?>

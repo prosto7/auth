@@ -1,20 +1,23 @@
 <?php
 class Export {
     
-    public static function exportToCSV()
+    public static function exportToCSV($result)
     {
-       $result= DB::run("SELECT id,login,email,namefirst,namelast,age,gender FROM users");
-
-        $fields = array_keys($result->fetch(PDO::FETCH_ASSOC));
         $filelocation = DS.'exports/';
         $filename     = 'export-'.date('Y-m-d H.i.s').'.csv';
         $file_export  =  $filelocation . $filename;
+        if (is_array($result[0])==true) {
+        $fields = array_keys($result[0]);
+         // первая строка - кейс
         $data = fopen($file_export, 'w+');
         fputcsv($data, $fields);
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        foreach($result as $row){
             fputcsv($data, $row);
         }
-        
+    } else {
+            echo "Invalid incoming data. Multidimensional array expected ";
+        }
+      
         fclose($data);
      
     }

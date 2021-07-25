@@ -20,19 +20,20 @@ class Model_Data extends Model {
             'gender_desc'  => '`gender` DESC',
             'imagepath_asc' => 'imagepath'
         );
-        $sort = $_GET['sort'];
 
         $sort = isset($_GET['sort']) && (array_key_exists($sort, $sort_list)) 
         ? $sort_sql =  $sort_list[$sort] 
         : $sort_sql = reset($sort_list);
-             
+            
+        $ps = DB::run("SELECT imagepath,id,login,email,namefirst,namelast,age,gender FROM `users` ORDER BY {$sort_sql}");
 
-        $ps = DB::run("SELECT * FROM `users` ORDER BY {$sort_sql}");
-        $list = $ps->fetchAll(PDO::FETCH_ASSOC);
-        return $list;    
+
+        $result = $ps->fetchAll(PDO::FETCH_ASSOC);
+      
+        return $result;    
     }
 
-       
+    
 }
 
 ?>

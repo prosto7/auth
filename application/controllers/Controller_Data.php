@@ -14,7 +14,7 @@ class Controller_Data extends Controller
             $data = $this->model->get_data_table_nativephp();          
             $this->view->generate('table_php_view.php','template_view.php',$data);
             if (Utils::is_ajax()==true){
-                Export::exportToCSV();
+                Export::exportToCSV($data);
             } 
 		}
     }

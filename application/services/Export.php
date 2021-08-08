@@ -8,7 +8,6 @@ class Export {
         $file_export  =  $filelocation . $filename;
         if (is_array($result[0])==true) {
         $fields = array_keys($result[0]);
-         // первая строка - кейс
         $data = fopen($file_export, 'w+');
         fputcsv($data, $fields);
         foreach($result as $row){

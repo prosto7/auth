@@ -37,7 +37,7 @@ function sort_link_th($title, $a, $b)
                 <td><?php echo $row['email']; ?></td>
                 <td><?php echo $row['namefirst']; ?></td>
                 <td><?php echo $row['namelast']; ?></td>
-                <td><?php echo $row['age']; ?></td>
+                <td><?php echo $row['birthday']; ?></td>
                 <td><?php echo $row['gender']; ?></td>
             </tr>
         <?php endforeach; ?>

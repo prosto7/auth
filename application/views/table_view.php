@@ -61,7 +61,7 @@ $(document).ready(function() {
                            data: 'namelast'
                        },
                        {
-                           data: 'age'
+                           data: 'birthday'
                        },
                        {
                            data: 'gender',

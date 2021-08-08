@@ -112,7 +112,7 @@ class Model_User extends Model
                 "email" => $row['email'],
                 "namefirst" => $row['namefirst'],
                 "namelast" => $row['namelast'],
-                "age" => $row['age'],
+                "birthday" => $row['birthday'],
                 "gender" => $row['gender'],
                 "id" => $row['id'],
             );
@@ -129,7 +129,7 @@ class Model_User extends Model
         echo json_encode($response);
     }
 
- function reg_user_in_db($login, $pass, $email, $namefirst, $namelast, $age, $gender, $imagepath, $id = 0){
+ function reg_user_in_db($login, $pass, $email, $namefirst, $namelast, $birthday, $gender, $imagepath, $id = 0){
 
 
    $pdo = DB::instance();
@@ -138,12 +138,12 @@ class Model_User extends Model
     $checker->execute();
     $row_count = $checker->fetchColumn();
     if ($row_count !== 1) {   // if table `users` has this login and hash password matches the entered password, user come in site
-        $ps = $pdo->prepare("INSERT INTO users (login, pass, roleid, email, namefirst, namelast, age, gender,imagepath,salt) VALUES (:login, :pass, :roleid, :email,:namefirst, :namelast, :age, :gender, :imagepath,:salt)");
+        $ps = $pdo->prepare("INSERT INTO users (login, pass, roleid, email, namefirst, namelast, birthday, gender,imagepath,salt) VALUES (:login, :pass, :roleid, :email,:namefirst, :namelast, :birthday, :gender, :imagepath,:salt)");
         // naming an object this, and transform to array
         $ar = (array)$this;
         array_shift($ar);
         // delete first element array  :id
-        // ar = :login, :pass, :roleid, :email, :namefirst, :namelast ,:age, :gender,:imagepath          
+        // ar = :login, :pass, :roleid, :email, :namefirst, :namelast ,:birthday, :gender,:imagepath          
         $ps->execute($ar);
         $result = true;
         return $result;
@@ -170,8 +170,8 @@ function get_data_table_nativephp()
         'namefirst_desc'   => '`namefirst`DESC',
         'namelast_asc'  => '`namelast`',
         'namelast_desc'  => '`namelast` DESC',
-        'age_asc'   => '`age`',
-        'age_desc'  => '`age` DESC',
+        'age_asc'   => '`birthday`',
+        'age_desc'  => '`birthday` DESC',
         'gender_asc'   => '`gender`',
         'gender_desc'  => '`gender` DESC',
         'imagepath_asc' => 'imagepath'
@@ -187,13 +187,36 @@ function get_data_table_nativephp()
     $sort_sql =  $sort_list[$sort];
   
         
-    $ps = DB::run("SELECT imagepath,id,login,email,namefirst,namelast,age,gender FROM `users` ORDER BY {$sort_sql}");
+    $ps = DB::run("SELECT imagepath,id,login,email,namefirst,namelast,birthday,gender FROM `users` ORDER BY {$sort_sql}");
 
 
     $result = $ps->fetchAll(PDO::FETCH_ASSOC);
   
     return $result;    
 }
+
+    // function prepareData(){
+
+
+
+    // }
+
+    function check_user($login, $email)
+    {
+        $result = DB::run("SELECT COUNT(*) FROM `users` WHERE login = '" . $login . "' OR email = '" . $email . "'");
+        $count = $result->fetchColumn();
+        return $count;
+    }
+
+
+    function insert_user($data)
+    {
+       DB::run("INSERT INTO users (login,email,pass,namefirst,namelast,birthday, gender,salt) VALUES (:login,:email,:pass,:namefirst,:namelast,:birthday,:gender,:salt)",$data);
+       
+    }
+
+
+
     }
 
 

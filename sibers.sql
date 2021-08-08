@@ -36,7 +36,7 @@ CREATE TABLE `users` (
   `email` varchar(128) NOT NULL,
   `namefirst` varchar(128) NOT NULL,
   `namelast` varchar(128) NOT NULL,
-  `age` date DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
   `gender` varchar(128) DEFAULT NULL,
   `imagepath` varchar(255) DEFAULT NULL,
   `salt` varchar(128) DEFAULT NULL
@@ -46,7 +46,7 @@ CREATE TABLE `users` (
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `login`, `pass`, `roleid`, `email`, `namefirst`, `namelast`, `age`, `gender`, `imagepath`, `salt`) VALUES
+INSERT INTO `users` (`id`, `login`, `pass`, `roleid`, `email`, `namefirst`, `namelast`, `birthday`, `gender`, `imagepath`, `salt`) VALUES
 (145, 'Jora423', '$5$rounds=5000$ZGH5iPADU6FLs7Vd$blNNnOJPf4U8BTK/XIVdBnqijg9E1UGMTDIku/LnD58', 2, 'Jordand199@Nilekd.ru', 'Jordand ', 'Nilekd', '2001-06-03', 'Male', '../images/users/f341a6c6da04bc62_848x477.jpg', '$5$rounds=5000$ZGH5iPADU6FLs7Vd'),
 (146, 'Knight09', '$5$rounds=5000$Um5k8G26ealAC7tu$gUq0fdwG360UvBTH9NL7Ni51jDAQnIue8HNJur2Nje5', 2, 'France@mail.ru', 'Ludovic', 'France', '1750-06-01', 'Male', '../images/users/depositphotos_17974895-stock-photo-the-medieval-knight-st-petersburg.jpg', '$5$rounds=5000$Um5k8G26ealAC7tu'),
 (147, 'hello1234', '$5$rounds=5000$96Bdwkf0S7mgYPuI$AIOQzL4aSlvo4o/4i/G2k43EhSy3BH/5b7yLHMLUoIB', 1, 'roman1199@mail.ru', 'Roman', 'Hrapov', '2006-01-20', 'Male', '../images/users/dota-date-announcement_thumb_16x9.jpg', '$5$rounds=5000$96Bdwkf0S7mgYPuI'),

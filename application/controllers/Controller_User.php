@@ -62,14 +62,11 @@ class Controller_User extends Controller
 		$this->model->get_data_table();
 
 		$this->view->generate('registration_view.php', 'template_view.php', $data);
-			
-	
-
 	}
 
 	function action_register()
 	{
-		
+
 		if (isset($_POST['regbtn'])) {
 			$login = $_POST['login'];
 			$email = $_POST['email'];
@@ -80,23 +77,26 @@ class Controller_User extends Controller
 			$birthday = $_POST['birthday'];
 			$gender = $_POST['gender'];
 			$data = array(
-							'login' => $login,
-							'email' => $email,
-							'pass' => $pass,
-							'pass2' => $pass2,
-							'namefirst' => $firstName,
-							'namelast' => $lastName,
-							'birthday' => $birthday,
-							'gender' => $gender,
-						);
-				
-			return Rules::fillValidationErrors($data);
-		
+				'login' => $login,
+				'email' => $email,
+				'pass' => $pass,
+				'pass2' => $pass2,
+				'namefirst' => $firstName,
+				'namelast' => $lastName,
+				'birthday' => $birthday,
+				'gender' => $gender,
+			);
 
-			
-		
-				$this->model->insert_user($data);
+			$result = Rules::fillValidationErrors($data);
+
+			var_dump($result);
+			if ($result[0] == true) {
+
+				$this->view->generate('registration_view.php', 'template_view.php', $result);
+			} else {
+				$this->model->insert_user($result[1]);
+				header('Location: /table' );
 			}
 		}
 	}
-
+}

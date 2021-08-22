@@ -3,35 +3,84 @@
 class Validation {
 
   
+  public static function checkForNumber($str) {
+    $i = strlen($str); 
+    while ($i--) {
+      if (is_numeric($str[$i])) return true;
+    }
+    return false;
+  }
+
+
   public static function checkLogin($login) {
-      (strlen($login)>=6 && strlen($login)<=25) ? true  : false ;
+     if (strlen($login)>=6 && strlen($login)<=25 ) 
+    {
+     return true; 
+    } 
+      return false;
+      
     }
   
 
   public static function checkPass($pass) {
-      (strlen($pass)>=6 && ctype_digit($pass)) ?  true :  false;
+    if (strlen($pass)>=6 &&  self::checkForNumber($pass)) 
+    {
+     
+    return true; 
+    } 
+    return false;
     }
       
   public static function checkEmail($email) {
-      (filter_var($email,FILTER_VALIDATE_EMAIL)) ?  true :  false;
-    }
+
+    if  (filter_var($email,FILTER_VALIDATE_EMAIL))
+    {
+      return true; 
+      } 
+      return false;
+      }
       
   public static function checkNonEmpty($name) {
-    ($name) ? true : false;
-  } 
+    if ($name) 
+    {
+      return true; 
+      } 
+      return false;
+      }
 
 
   public static function checkName($name) {
-    (strlen($name) < 128) ? true : false;
-  } 
+    if ($name) 
+    {
+      return true; 
+      } 
+     
+      return false;
+      
+      }
 
   public static function checkDate($date) {
-    ($date < date('d.m.Y')) ? true : false;
-  } 
+    echo $date;
+    $newd = date('Y-m-d');
+    
+    if  ($date < date('Y-m-d')) 
+    {
+      return true; 
+      } 
+     
+      return false;
+      
+      }
 
   public static function checkConfirmPass($pass,$pass1) {
-    ($pass === $pass1) ? true : false;
-  } 
+    if ($pass === $pass1) 
+    {
+      return true; 
+      } 
+     
+      return false;
+      
+      }
 
   public static function checkEmailExists($email) {
 
@@ -39,15 +88,19 @@ class Validation {
     $db = DB::instance()->prepare('SELECT COUNT(*) FROM users WHERE email = :email');
     $db->bindParam(':email',$email, PDO::PARAM_STR);
     $db->execute();
-    ($db->fetchColumn()) ? true : false;
-
-  }
+    if ($db->fetchColumn() == 0) : return true;
+    else : return false;
+    endif;
+      }
+      
 
   public static function checkDataExists($data){
 
     $result = DB::run("SELECT COUNT(*) FROM `users` WHERE login = '" . $data . "'");
     $count = $result->fetchColumn();
-    return $count;
+    if ($count == 0) : return true;
+    else : return false;
+    endif;
   }
         // define variables and set to empty values
 
